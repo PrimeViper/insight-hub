@@ -1,13 +1,27 @@
-import React from "react";
-import Accordion from "react-bootstrap/Accordion";
-import Container from 'react-bootstrap/Container';
+import Header from "./components/Header";
+import React, { useState, useEffect } from "react";
 
 const App = () => {
+  const [ darkMode, setDarkMode ] = useState(false);
+  const [ currentCategory, setCurrentCategory ] = useState("general");
+
+  useEffect(() => {
+    let mode = localStorage.getItem("mode");
+    if (mode === null) {
+      localStorage.setItem("mode", JSON.stringify(true));
+      setDarkMode(true);
+    } 
+    else {
+      mode = JSON.parse(mode);
+      setDarkMode(mode);
+    }
+  }, []);
+  
+
+
   return (
     <div>
-      <Container>
-        <h1 text-center>Welcome To Insight-Hub</h1>
-      </Container>
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}/>
     </div>
   );
 };
