@@ -1,9 +1,15 @@
-import Header from "./components/Header";
+import "../src/App.css";
+import Board from "./components/Board";
+import Footer from "./components/Footer";
+import Header from './components/Header';
 import React, { useState, useEffect } from "react";
-
+ 
 const App = () => {
+
+  const [ loading, setLoading ] = useState(true);
   const [ darkMode, setDarkMode ] = useState(false);
-  const [ currentCategory, setCurrentCategory ] = useState("general");
+  const [ category, setCategory ] = useState("general");
+  const categoryDetails = [ "general", "entertainment", "business", "science", "sports", "health", "technology"];
 
   useEffect(() => {
     let mode = localStorage.getItem("mode");
@@ -16,12 +22,12 @@ const App = () => {
       setDarkMode(mode);
     }
   }, []);
-  
-
 
   return (
-    <div>
-      <Header darkMode={darkMode} setDarkMode={setDarkMode} currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}/>
+    <div className={darkMode ? `bg-dark` : `bg-secondary`}>
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} category={category} setCategory={setCategory} categoryDetails={categoryDetails} loading={loading} setLoading={setLoading}/>
+      <Board category={category} loading={loading} setLoading={setLoading} darkMode={darkMode}/>
+      <Footer setCategory={setCategory}/>
     </div>
   );
 };
