@@ -1,0 +1,6 @@
+.footer{
+    white-space: nowrap !important; 
+    overflow-x: auto!important;
+    gap: 10px!important;
+    padding: 10px!important;
+} 
