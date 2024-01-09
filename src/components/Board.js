@@ -23,7 +23,7 @@ const Board = ({ category, loading, setLoading, darkMode }) => {
 
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line
+    
   }, [category]);
 
   return (
